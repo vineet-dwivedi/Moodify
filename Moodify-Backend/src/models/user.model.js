@@ -8,7 +8,8 @@ const userSchema = new mongo.Schema({
     email:{
         type: String,
         required: [true,'Email is required'],
-        unique: [true,'Email must be unique']
+        unique: [true,'Email must be unique'],
+        select: false
     },
     password:{
         type: String,
