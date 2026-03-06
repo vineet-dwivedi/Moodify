@@ -5,3 +5,4 @@ Moodify is a Full Stack Gen-AI Face Expression Music Player that detects a user'
 The system uses AI-based facial expression analysis to understand emotions such as happiness, sadness, or surprise and dynamically recommends or plays songs accordingly.
 
 ⚠️ Project Status: Currently in active development.
+Author: Vineet Dwivedi
