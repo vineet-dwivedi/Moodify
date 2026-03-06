@@ -1,4 +1,4 @@
-🎧 Moodify
+🎧 Moodify(AI-Mood Detection)
 
 Moodify is a Full Stack Gen-AI Face Expression Music Player that detects a user's facial expression in real-time and automatically plays music that matches the detected mood.
 
