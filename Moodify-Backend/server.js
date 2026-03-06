@@ -1,4 +1,5 @@
 require('dotenv').config()
+require('./src/config/cache')
 const app = require('./src/app');
 const connectToDB = require('./src/config/db')
 const PORT = 3000;
