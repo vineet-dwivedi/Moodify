@@ -1,0 +1,371 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap");
+
+$glass-bg: rgba(10, 10, 12, 0.76);
+$glass-border: rgba(255, 255, 255, 0.18);
+$text-main: #eef4ff;
+$text-muted: rgba(229, 238, 255, 0.72);
+$cocoa-light: #d6a27c;
+$cocoa-mid: #b67a54;
+$cocoa-dark: #8b5a3e;
+$cocoa-link: #c78f68;
+$motion-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+.login-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2.75rem);
+  font-family: "Plus Jakarta Sans", "Trebuchet MS", "Segoe UI", sans-serif;
+  color: $text-main;
+  background:
+    radial-gradient(90% 90% at 10% 12%, rgba(255, 255, 255, 0.12) 0%, rgba(0, 0, 0, 0) 45%),
+    radial-gradient(80% 80% at 90% 88%, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0) 42%),
+    linear-gradient(155deg, #020203 0%, #050507 46%, #0a0a0e 100%);
+  overflow: hidden;
+  position: relative;
+  animation: fadeInSmooth 900ms $motion-smooth;
+}
+
+.login-shell::before,
+.login-shell::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+.login-shell::before {
+  width: 26rem;
+  height: 26rem;
+  left: -9rem;
+  top: -8rem;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 64%);
+  animation: driftOrb 14s ease-in-out infinite alternate;
+}
+
+.login-shell::after {
+  width: 22rem;
+  height: 22rem;
+  right: -7rem;
+  bottom: -8rem;
+  background: radial-gradient(circle, rgba(197, 214, 255, 0.14) 0%, rgba(197, 214, 255, 0) 60%);
+  animation: driftOrb 12s ease-in-out infinite alternate-reverse;
+}
+
+.login-card {
+  width: min(980px, 100%);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(1rem, 2.4vw, 2rem);
+  padding: clamp(1rem, 3vw, 2.25rem);
+  border-radius: 28px;
+  border: 1px solid $glass-border;
+  background: $glass-bg;
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  animation: cardFloat 12s ease-in-out infinite, cardReveal 850ms $motion-smooth;
+}
+
+.login-card::before {
+  content: "";
+  position: absolute;
+  inset: -60% auto auto -35%;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 62%);
+  animation: glowSweep 10s linear infinite;
+}
+
+.login-visual {
+  position: relative;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(175deg, rgba(18, 18, 22, 0.88) 0%, rgba(7, 7, 9, 0.96) 100%),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 6px,
+      rgba(255, 255, 255, 0) 6px,
+      rgba(255, 255, 255, 0) 16px
+    );
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  min-height: 380px;
+}
+
+.shader-frame {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.5) 0%, rgba(237, 244, 255, 0.24) 100%);
+  box-shadow:
+    0 28px 52px rgba(0, 0, 0, 0.56),
+    0 0 34px rgba(232, 242, 255, 0.2);
+  padding: 0.45rem;
+  position: relative;
+  z-index: 1;
+  animation: frameBreath 8.2s ease-in-out infinite;
+  justify-self: center;
+  align-self: center;
+  margin: 0 auto;
+}
+
+.shader-mount {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #010206;
+}
+
+.shader-mount canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.login-kicker {
+  margin: 0;
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: rgba(180, 225, 255, 0.82);
+}
+
+.login-content h1 {
+  margin: 0;
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: 0.02em;
+}
+
+.login-subtitle {
+  margin: 0 0 0.8rem;
+  color: $text-muted;
+}
+
+.login-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.login-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(226, 238, 255, 0.93);
+}
+
+.login-form input {
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid rgba(176, 214, 248, 0.2);
+  background: rgba(5, 13, 23, 0.47);
+  color: $text-main;
+  padding: 0 0.95rem;
+  outline: none;
+  transition: border-color 260ms $motion-smooth, box-shadow 260ms $motion-smooth, transform 260ms $motion-smooth;
+}
+
+.login-form input::placeholder {
+  color: rgba(198, 214, 235, 0.55);
+}
+
+.login-form input:focus {
+  border-color: rgba(214, 162, 124, 0.75);
+  box-shadow: 0 0 0 3px rgba(182, 122, 84, 0.22);
+  transform: translateY(-1px);
+}
+
+.login-form button {
+  margin-top: 0.6rem;
+  height: 48px;
+  border: 1px solid rgba(255, 228, 206, 0.32);
+  border-radius: 12px;
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #fff2e7;
+  background: linear-gradient(145deg, $cocoa-light 0%, $cocoa-mid 55%, $cocoa-dark 100%);
+  background-size: 160% 160%;
+  cursor: pointer;
+  transition: transform 260ms $motion-smooth, filter 260ms $motion-smooth, box-shadow 260ms $motion-smooth;
+  box-shadow:
+    0 14px 28px rgba(72, 42, 27, 0.42),
+    inset 0 1px 0 rgba(255, 235, 218, 0.26);
+  animation: cocoaShift 10s linear infinite;
+}
+
+.login-form button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.login-form button:active {
+  transform: translateY(0);
+}
+
+.login-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+  transform: none;
+  filter: none;
+}
+
+.login-feedback {
+  margin: 0.45rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.login-feedback--error {
+  color: #ffbea0;
+}
+
+.login-feedback--success {
+  color: #dcb89a;
+}
+
+.login-footer {
+  margin: 1rem 0 0;
+  color: rgba(214, 228, 245, 0.88);
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+.login-footer a {
+  color: $cocoa-link;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 220ms $motion-smooth, text-shadow 220ms $motion-smooth;
+  animation: linkPulse 6s ease-in-out infinite;
+}
+
+.login-footer a:hover {
+  color: #e4b28d;
+  text-decoration: underline;
+  text-shadow: 0 0 14px rgba(199, 143, 104, 0.35);
+}
+
+@media (max-width: 920px) {
+  .login-card {
+    grid-template-columns: 1fr;
+  }
+
+  .login-visual {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 560px) {
+  .login-shell {
+    padding: 0.9rem;
+  }
+
+  .login-card {
+    border-radius: 20px;
+    padding: 0.95rem;
+  }
+
+  .shader-frame {
+    border-radius: 18px;
+  }
+}
+
+@keyframes cardFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes frameBreath {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+}
+
+@keyframes glowSweep {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(40px) translateY(16px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes driftOrb {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(22px, 18px, 0);
+  }
+}
+
+@keyframes cocoaShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes linkPulse {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes cardReveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes fadeInSmooth {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

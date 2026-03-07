@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap");
+
+$card-bg: linear-gradient(160deg, rgba(8, 11, 17, 0.58) 0%, rgba(6, 8, 13, 0.62) 100%);
+$card-border: rgba(255, 255, 255, 0.14);
+$text-main: #f2f6ff;
+$text-muted: rgba(219, 229, 243, 0.72);
+$input-bg: rgba(6, 9, 14, 0.58);
+$input-border: rgba(188, 206, 230, 0.18);
+$cocoa-light: #d6a27c;
+$cocoa-mid: #b67a54;
+$cocoa-dark: #8b5a3e;
+$cocoa-link: #c78f68;
+$motion-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+.register-shell {
+  min-height: 100vh;
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  font-family: "Plus Jakarta Sans", "Trebuchet MS", "Segoe UI", sans-serif;
+  color: $text-main;
+  overflow: hidden;
+  isolation: isolate;
+  animation: fadeInSmooth 900ms $motion-smooth;
+}
+
+.register-shader {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+}
+
+.register-shader canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.register-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(120% 120% at 50% 15%, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.44) 58%),
+    linear-gradient(160deg, rgba(1, 2, 5, 0.28) 0%, rgba(1, 2, 6, 0.5) 100%);
+  background-size: 120% 120%;
+  animation: overlayDrift 16s ease-in-out infinite;
+}
+
+.register-card {
+  width: min(520px, 100%);
+  border-radius: 26px;
+  border: 1px solid $card-border;
+  background: $card-bg;
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  padding: clamp(1.15rem, 3vw, 2rem);
+  position: relative;
+  z-index: 1;
+  animation: cardReveal 850ms $motion-smooth, cardFloat 12s ease-in-out 1s infinite;
+}
+
+.register-card::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.register-kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: rgba(188, 206, 230, 0.78);
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+}
+
+.register-card h1 {
+  margin: 0.4rem 0 0;
+  font-size: clamp(1.8rem, 3vw, 2.45rem);
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.register-subtitle {
+  margin: 0.45rem 0 1rem;
+  color: $text-muted;
+}
+
+.register-form {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.register-form label {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.register-form input {
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid $input-border;
+  background: $input-bg;
+  color: $text-main;
+  padding: 0 0.92rem;
+  outline: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    border-color 260ms $motion-smooth,
+    box-shadow 260ms $motion-smooth,
+    transform 260ms $motion-smooth,
+    background 260ms $motion-smooth;
+}
+
+.register-form input::placeholder {
+  color: rgba(199, 213, 233, 0.58);
+}
+
+.register-form input:focus {
+  border-color: rgba(214, 162, 124, 0.7);
+  box-shadow: 0 0 0 3px rgba(182, 122, 84, 0.16);
+  background: rgba(10, 14, 22, 0.72);
+  transform: translateY(-1px);
+}
+
+.register-form button {
+  margin-top: 0.6rem;
+  height: 48px;
+  border: 1px solid rgba(255, 228, 206, 0.32);
+  border-radius: 12px;
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  font-weight: 600;
+  font-size: 0.97rem;
+  letter-spacing: 0.03em;
+  color: #fff2e7;
+  background: linear-gradient(145deg, $cocoa-light 0%, $cocoa-mid 55%, $cocoa-dark 100%);
+  background-size: 160% 160%;
+  cursor: pointer;
+  transition: transform 260ms $motion-smooth, filter 260ms $motion-smooth, box-shadow 260ms $motion-smooth;
+  box-shadow:
+    0 12px 24px rgba(72, 42, 27, 0.42),
+    inset 0 1px 0 rgba(255, 235, 218, 0.26);
+  animation: cocoaShift 10s linear infinite;
+}
+
+.register-form button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.register-form button:active {
+  transform: translateY(0);
+}
+
+.register-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+  transform: none;
+  filter: none;
+}
+
+.register-feedback {
+  margin: 0.45rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.register-feedback--error {
+  color: #ffbea0;
+}
+
+.register-feedback--success {
+  color: #dcb89a;
+}
+
+.register-footer {
+  margin: 1rem 0 0;
+  color: rgba(202, 216, 237, 0.8);
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+.register-footer a {
+  color: $cocoa-link;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 220ms $motion-smooth, text-shadow 220ms $motion-smooth;
+  animation: linkPulse 6s ease-in-out infinite;
+}
+
+.register-footer a:hover {
+  color: #e4b28d;
+  text-decoration: underline;
+  text-shadow: 0 0 14px rgba(199, 143, 104, 0.35);
+}
+
+@media (max-width: 560px) {
+  .register-card {
+    border-radius: 20px;
+    padding: 1rem;
+  }
+}
+
+@keyframes cardReveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes cardFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes cocoaShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes linkPulse {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInSmooth {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes overlayDrift {
+  0%,
+  100% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 56% 44%;
+  }
+}

@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import FaceExpression from "./features/Expressions/components/FaceExpression";
-import "./App.css";
 
 function App() {
   const [currentMood, setCurrentMood] = useState("Unknown");

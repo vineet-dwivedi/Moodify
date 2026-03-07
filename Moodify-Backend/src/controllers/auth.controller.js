@@ -32,7 +32,7 @@ async function registerUser(req,res){
         username: user.username
     },process.env.JWT_KEY, {expiresIn: '7d'})
 
-    req.cookie('token',token)
+    res.cookie('token',token)
     return res.status(201).json({
         message: 'User register successfully.',
         user:{
@@ -67,7 +67,7 @@ async function loginUser(req,res) {
         username: user.username
     },process.env.JWT_KEY,{expiresIn: '7d'})
 
-    res.cookkie('token',token)
+    res.cookie('token',token)
 
     return res.status(200).json({
         message: 'User logged in successfully',
