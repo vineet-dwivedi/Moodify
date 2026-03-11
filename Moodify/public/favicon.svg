@@ -1,0 +1,37 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(156 118) rotate(58) scale(430 430)">
+      <stop offset="0" stop-color="#1a2236"/>
+      <stop offset="0.5" stop-color="#0b1224"/>
+      <stop offset="1" stop-color="#05070f"/>
+    </radialGradient>
+    <radialGradient id="glass" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(196 152) rotate(55) scale(300 300)">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="0.45" stop-color="#b7c7ff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#6f7cff" stop-opacity="0.08"/>
+    </radialGradient>
+    <linearGradient id="mood" x1="128" y1="128" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4ce3c1"/>
+      <stop offset="0.5" stop-color="#8a7dff"/>
+      <stop offset="1" stop-color="#b9f44a"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="110" y1="150" x2="420" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="0.5" stop-color="#8a7dff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#4ce3c1" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="120" fill="url(#bg)"/>
+
+  <circle cx="256" cy="256" r="188" fill="url(#glass)"/>
+  <circle cx="256" cy="256" r="182" fill="none" stroke="url(#ring)" stroke-width="10" opacity="0.8"/>
+
+  <path d="M170 240C210 178 298 168 350 218C382 248 394 296 378 336C352 392 288 420 230 398C188 380 156 334 168 284" fill="url(#mood)" fill-opacity="0.25"/>
+
+  <path d="M182 196C206 168 248 154 288 162" stroke="#ffffff" stroke-opacity="0.5" stroke-width="8" stroke-linecap="round"/>
+  <path d="M188 318C214 352 256 368 302 360" stroke="#ffffff" stroke-opacity="0.25" stroke-width="6" stroke-linecap="round"/>
+
+  <circle cx="186" cy="190" r="10" fill="#ffffff" fill-opacity="0.6"/>
+  <circle cx="216" cy="178" r="6" fill="#ffffff" fill-opacity="0.4"/>
+</svg>
