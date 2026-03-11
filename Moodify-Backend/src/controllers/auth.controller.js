@@ -32,7 +32,12 @@ async function registerUser(req,res){
         username: user.username
     },process.env.JWT_KEY, {expiresIn: '7d'})
 
-    res.cookie('token',token)
+    const isProduction = process.env.NODE_ENV === "production";
+    res.cookie('token',token,{
+        httpOnly: true,
+        sameSite: isProduction ? "none" : "lax",
+        secure: isProduction
+    })
     return res.status(201).json({
         message: 'User register successfully.',
         user:{
@@ -67,7 +72,12 @@ async function loginUser(req,res) {
         username: user.username
     },process.env.JWT_KEY,{expiresIn: '7d'})
 
-    res.cookie('token',token)
+    const isProduction = process.env.NODE_ENV === "production";
+    res.cookie('token',token,{
+        httpOnly: true,
+        sameSite: isProduction ? "none" : "lax",
+        secure: isProduction
+    })
 
     return res.status(200).json({
         message: 'User logged in successfully',
@@ -90,7 +100,12 @@ async function getMe(req,res) {
 
 async function logoutUser(req,res){
     const token = req.cookies.token;
-    res.clearCookie('token');
+    const isProduction = process.env.NODE_ENV === "production";
+    res.clearCookie('token',{
+        httpOnly: true,
+        sameSite: isProduction ? "none" : "lax",
+        secure: isProduction
+    });
     
     await redis.set(token,Date.now().toString(),"EX",60*60);
 

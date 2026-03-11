@@ -1,9 +1,20 @@
-import axios from 'axios';
+import axios from "axios";
+
+const resolveApiBaseUrl = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (envUrl) return envUrl;
+
+  if (typeof window !== "undefined" && window.location.hostname !== "localhost") {
+    return "https://moodify-f2gk.onrender.com/api";
+  }
+
+  return "http://localhost:3000/api";
+};
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000/api',
-    withCredentials: true
-})
+  baseURL: resolveApiBaseUrl(),
+  withCredentials: true,
+});
 
 export async function register({email,password,username}){
     const response = await api.post('/auth/register',{email,password,username})
