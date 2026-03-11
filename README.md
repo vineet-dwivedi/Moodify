@@ -88,5 +88,6 @@ This script extracts ID3 metadata, creates posters in `Moodify-Backend/public/po
 - Camera access is required for expression detection.
 - Autoplay may be blocked by the browser until user interaction.
 
-## License
+## License And Author
 MIT
+Author : Vineet Dwivedi
