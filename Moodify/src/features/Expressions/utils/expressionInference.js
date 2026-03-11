@@ -24,7 +24,9 @@ export function inferExpression(shape) {
     Happy: clamp01(
       smile * 1.35 + eyeSquint * 0.25 - frown * 0.7 - mouthPress * 0.2
     ),
-    Sad: clamp01(frown * 1.1 + browUp * 0.35 + mouthPress * 0.45 - smile * 0.5),
+    Sad: clamp01(
+      frown * 1.25 + browUp * 0.5 + mouthPress * 0.55 - smile * 0.45
+    ),
     Surprised: clamp01(
       jawOpen * 0.8 +
         eyeWide * 0.75 +
@@ -45,8 +47,10 @@ export function inferExpression(shape) {
   const [bestLabel, bestScore] = sorted[0];
   const secondScore = sorted[1]?.[1] ?? 0;
 
+  if (bestLabel === "Sad" && bestScore >= 0.28) return "Sad";
   if (bestScore < 0.38) return "Neutral";
   if (bestScore - secondScore < 0.08) return "Neutral";
+  if (bestLabel === "Angry") return "Neutral";
   return bestLabel;
 }
 
@@ -69,4 +73,3 @@ export function getMostFrequentLabel(labels) {
 
   return winner;
 }
-

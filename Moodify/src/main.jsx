@@ -4,11 +4,13 @@ import { RouterProvider } from 'react-router-dom'
 import './index.css'
 import { router } from './app.routes.jsx'
 import { AuthProvider } from './features/auth/auth.context.jsx';
-
+import { SongContextProvider } from './features/home/song.context.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <SongContextProvider>
+        <RouterProvider router={router}/> 
+      </SongContextProvider>
     </AuthProvider>
   </StrictMode>,
 )

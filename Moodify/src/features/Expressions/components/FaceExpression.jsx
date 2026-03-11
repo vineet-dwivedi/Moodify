@@ -1,12 +1,19 @@
 import useFaceExpressionDetection from "../hooks/useFaceExpressionDetection";
 
-export default function FaceExpression({ onExpressionChange }) {
-  const { videoRef, expression } = useFaceExpressionDetection(onExpressionChange);
+export default function FaceExpression({
+  onExpressionChange,
+  enabled = true,
+  showLabel = true,
+}) {
+  const { videoRef, expression } = useFaceExpressionDetection(
+    onExpressionChange,
+    enabled
+  );
 
   return (
     <div>
       <video ref={videoRef} autoPlay muted playsInline width="500" />
-      <h2>{expression}</h2>
+      {showLabel ? <h2>{expression}</h2> : null}
     </div>
   );
 }

@@ -12,18 +12,29 @@ import {
   inferExpression,
 } from "../utils/expressionInference";
 
-export default function useFaceExpressionDetection(onExpressionChange) {
+export default function useFaceExpressionDetection(onExpressionChange, enabled = true) {
   const videoRef = useRef(null);
   const historyRef = useRef([]);
   const lastSentRef = useRef("");
   const [expression, setExpression] = useState(DEFAULT_EXPRESSION);
 
   useEffect(() => {
+    if (!enabled) {
+      historyRef.current = [];
+      lastSentRef.current = "";
+      setExpression("Paused");
+      return undefined;
+    }
+
     let faceLandmarker;
     let stream;
     let rafId;
     let cancelled = false;
     let lastVideoTime = -1;
+
+    lastSentRef.current = "";
+    historyRef.current = [];
+    setExpression(DEFAULT_EXPRESSION);
 
     const init = async () => {
       const vision = await FilesetResolver.forVisionTasks(WASM_BASE_URL);
@@ -55,7 +66,10 @@ export default function useFaceExpressionDetection(onExpressionChange) {
       }
 
       stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      if (!videoRef.current) return;
+      if (!videoRef.current) {
+        stream.getTracks().forEach((track) => track.stop());
+        return;
+      }
 
       videoRef.current.srcObject = stream;
       await videoRef.current.play();
@@ -117,8 +131,7 @@ export default function useFaceExpressionDetection(onExpressionChange) {
       if (stream) stream.getTracks().forEach((track) => track.stop());
       if (faceLandmarker) faceLandmarker.close();
     };
-  }, [onExpressionChange]);
+  }, [onExpressionChange, enabled]);
 
   return { videoRef, expression };
 }
-
