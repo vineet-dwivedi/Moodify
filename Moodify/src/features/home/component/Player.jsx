@@ -1,7 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import FaceExpression from "../../Expressions/components/FaceExpression";
 import useSong from "../hooks/useSong";
 import "./Player.scss";
+import gsap from "gsap";
 
 const MOODS = [
   { id: "happy", label: "Happy", tone: "Bright / radiant" },
@@ -25,6 +27,7 @@ const Player = () => {
   });
   const [themeJiggle, setThemeJiggle] = useState(false);
   const audioRef = useRef(null);
+  const shellRef = useRef(null);
   const lastAutoMoodRef = useRef(null);
   const shouldStopAfterPlayRef = useRef(false);
 
@@ -60,6 +63,37 @@ const Player = () => {
       }
     };
   }, [activeMood]);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      tl.from(".player-panel", { y: 24, opacity: 0, duration: 0.9 })
+        .from(".player-card", { y: 24, opacity: 0, duration: 0.9 }, "-=0.6")
+        .from(".player-mood", { y: 16, opacity: 0, duration: 0.6, stagger: 0.06 }, "-=0.5")
+        .from(".player-expression", { y: 16, opacity: 0, duration: 0.6 }, "-=0.4");
+
+      gsap.to(".player-glow--left", {
+        x: 80,
+        y: 50,
+        duration: 12,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+
+      gsap.to(".player-glow--right", {
+        x: -80,
+        y: -60,
+        duration: 14,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+    }, shellRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleThemeToggle = () => {
     const nextTheme = theme === "dark" ? "light" : "dark";
@@ -155,7 +189,10 @@ const Player = () => {
   };
 
   return (
-    <section className={`player-shell ${moodClass} theme-${theme}`}>
+    <section
+      ref={shellRef}
+      className={`player-shell ${moodClass} theme-${theme}`}
+    >
       <div className="player-glow player-glow--left" />
       <div className="player-glow player-glow--right" />
 
@@ -184,21 +221,41 @@ const Player = () => {
 
           <div className="player-moods">
             {MOODS.map((mood) => (
-              <button
+              <motion.button
                 key={mood.id}
                 type="button"
                 className={`player-mood ${activeMood === mood.id ? "is-active" : ""}`}
                 onClick={() => handleMoodSelect(mood.id)}
+                whileHover={{ y: -4, scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 <span className="player-mood__label">{mood.label}</span>
                 <span className="player-mood__tone">{mood.tone}</span>
-              </button>
+              </motion.button>
             ))}
           </div>
 
-          {errorMessage ? <p className="player-error">{errorMessage}</p> : null}
+          <AnimatePresence>
+            {errorMessage ? (
+              <motion.p
+                className="player-error"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+              >
+                {errorMessage}
+              </motion.p>
+            ) : null}
+          </AnimatePresence>
 
-          <div className="player-expression">
+          <motion.div
+            className="player-expression"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
+          >
             <FaceExpression
               onExpressionChange={handleExpressionChange}
               enabled={isDetecting}
@@ -217,7 +274,7 @@ const Player = () => {
             <p className="player-expression__hint">
               Detection pauses automatically once a mood is detected and music starts.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         <div className="player-card">

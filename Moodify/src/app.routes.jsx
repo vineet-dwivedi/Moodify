@@ -1,16 +1,20 @@
-import { createBrowserRouter } from "react-router-dom";
-import App from "./App.jsx";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Login from "./features/auth/pages/Login.jsx";
 import Register from "./features/auth/pages/Register.jsx";
 import { Protected } from "./features/auth/Protected.jsx";
-import Home from "./features/home/pages/Home.jsx";
+import Player from "./features/home/component/Player.jsx";
+
 
 export const router = createBrowserRouter([
   {
     path: "/",
+    element: <Navigate to="/app" replace />,
+  },
+  {
+    path: "/app",
     element: (
       <Protected>
-        <Home/>
+        <Player />
       </Protected>
     ),
   },
@@ -21,5 +25,9 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "*",
+    element: <Navigate to="/app" replace />,
   },
 ]);

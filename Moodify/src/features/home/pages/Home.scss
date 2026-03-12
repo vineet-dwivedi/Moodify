@@ -1,0 +1,152 @@
+.home-shell{
+
+  min-height:100vh;
+  background:#050505;
+  color:white;
+
+  overflow:hidden;
+  position:relative;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-family:-apple-system,BlinkMacSystemFont;
+
+}
+
+/* background container */
+
+.home-bg{
+
+  position:absolute;
+  inset:0;
+
+  overflow:hidden;
+
+}
+
+/* gradients */
+
+.gradient{
+
+  position:absolute;
+  width:1100px;
+  height:1100px;
+
+  filter:blur(180px);
+  opacity:.6;
+
+}
+
+.gradient-one{
+
+  background:radial-gradient(circle,#6b5cff 0%,transparent 60%);
+
+  top:-300px;
+  left:-200px;
+
+}
+
+.gradient-two{
+
+  background:radial-gradient(circle,#ff4db8 0%,transparent 60%);
+
+  bottom:-300px;
+  right:-200px;
+
+}
+
+/* rotating light orb */
+
+.orb{
+
+  position:absolute;
+
+  width:600px;
+  height:600px;
+
+  border-radius:50%;
+
+  background:
+  radial-gradient(circle,
+  rgba(255,255,255,.15),
+  transparent 70%);
+
+  filter:blur(120px);
+
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+
+}
+
+/* center layout */
+
+.home-center{
+
+  position:relative;
+  z-index:2;
+
+}
+
+/* glass container */
+
+.player-glass{
+
+  width:min(900px,92vw);
+
+  padding:40px;
+
+  border-radius:22px;
+
+  backdrop-filter:blur(28px);
+
+  background:rgba(255,255,255,.05);
+
+  border:1px solid rgba(255,255,255,.1);
+
+  box-shadow:
+  0 40px 120px rgba(0,0,0,.7);
+
+  transition:all .4s ease;
+
+}
+
+/* hover depth */
+
+.player-glass:hover{
+
+  transform:translateY(-6px);
+  box-shadow:
+  0 60px 140px rgba(0,0,0,.8);
+
+}
+
+/* floating motion */
+
+@keyframes float{
+
+  0%{ transform:translateY(0) }
+  50%{ transform:translateY(-8px) }
+  100%{ transform:translateY(0) }
+
+}
+
+.player-glass{
+
+  animation:float 8s ease-in-out infinite;
+
+}
+
+/* responsive */
+
+@media(max-width:768px){
+
+.player-glass{
+
+  padding:26px;
+
+}
+
+}
