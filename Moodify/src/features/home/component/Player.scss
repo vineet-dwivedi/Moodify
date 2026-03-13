@@ -12,7 +12,7 @@
   color: #f4f6ff;
   position: relative;
   overflow: hidden;
-  font-family: "Sora", "Segoe UI", sans-serif;
+  font-family: "Bebas Neue", "Segoe UI", sans-serif;
   --panel-bg: rgba(255, 255, 255, 0.16);
   --panel-border: rgba(255, 255, 255, 0.22);
   --panel-inner: rgba(255, 255, 255, 0.25);
@@ -148,7 +148,7 @@
   font-size: clamp(26px, 3vw, 40px);
   line-height: 1.1;
   margin: 0 0 10px;
-  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  font-family: "Bebas Neue", "Segoe UI", sans-serif;
 }
 
 .player-subtitle {
@@ -199,28 +199,34 @@
   gap: 6px;
 }
 
-.player-brand::before {
-  content: "";
-  width: 42px;
-  height: 14px;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 15% 50%, #ff5f57 0 35%, transparent 40%),
-    radial-gradient(circle at 50% 50%, #ffbd2e 0 35%, transparent 40%),
-    radial-gradient(circle at 85% 50%, #28c840 0 35%, transparent 40%);
-  box-shadow: 0 0 14px rgba(255, 255, 255, 0.15);
-}
-
-.player-brand__kicker {
-  font-size: 13px;
-  letter-spacing: 0.15em;
+.player-brand__title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.7;
+  background: linear-gradient(120deg, #8ef3ff, #8effd4, #b189ff, #ff7edb);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: moodifyGlow 6s ease-in-out infinite;
 }
 
 .player-brand__status {
   font-size: 0.82rem;
   color: var(--text-muted);
+}
+
+@keyframes moodifyGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .player-user {
@@ -370,7 +376,7 @@
 
 .player-quickstat strong {
   font-size: 1rem;
-  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  font-family: "Bebas Neue", "Segoe UI", sans-serif;
 }
 
 .player-moods {
@@ -580,7 +586,7 @@
 
 .player-meta h2 {
   font-size: clamp(18px, 2vw, 22px);
-  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  font-family: "Bebas Neue", "Segoe UI", sans-serif;
   margin: 0 0 8px;
 }
 
@@ -641,7 +647,7 @@
 
 .player-insights h3 {
   margin: 0;
-  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  font-family: "Bebas Neue", "Segoe UI", sans-serif;
   font-size: 1.15rem;
 }
 

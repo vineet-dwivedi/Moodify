@@ -8,7 +8,7 @@ import Player from "./features/home/component/Player.jsx";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/app" replace />,
+    element: <Login />,
   },
   {
     path: "/app",
@@ -28,6 +28,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <Navigate to="/app" replace />,
+    element: <Navigate to="/login" replace />,
   },
 ]);

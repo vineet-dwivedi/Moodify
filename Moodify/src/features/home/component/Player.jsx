@@ -331,7 +331,7 @@ const Player = () => {
         <div className="player-panel">
           <div className="player-topbar">
             <div className="player-brand">
-              <span className="player-brand__kicker">Moodify Player</span>
+              <span className="player-brand__title">Moodify</span>
               <span className="player-brand__status">Live session</span>
             </div>
             <div className="player-topbar__actions">
