@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import "./Login.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { Navigate } from "react-router-dom";
 
 const fragmentShader = `
 vec4 abyssColor = vec4(0.02, 0.03, 0.07, 1.0);
@@ -41,7 +40,6 @@ function Login() {
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     const mountNode = shaderMountRef.current;
@@ -115,30 +113,27 @@ function Login() {
   };
 
   const { user, loading, handleLogin } = useAuth();
+  const location = useLocation();
+  const redirectPath = location.state?.from?.pathname || "/app";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorMessage("");
-    setSuccessMessage("");
 
     try {
       await handleLogin({
         email: credentials.email.trim(),
         password: credentials.password,
       });
-
-      setSuccessMessage("Logged in successfully.");
     } catch (error) {
       const backendMessage = error?.response?.data?.message;
       setErrorMessage(backendMessage || "Unable to login right now.");
     }
   };
 
-  const navigate = useNavigate();
-
-  useEffect(()=>{
-    if(user) navigate('/',{replace:true});
-  },[user,navigate])
+  if (user) {
+    return <Navigate to={redirectPath} replace />;
+  }
 
   return (
     <section className="login-shell">
@@ -183,12 +178,8 @@ function Login() {
               {loading ? "Signing in..." : "Login"}
             </button>
           </form>
-          {errorMessage ? <p className="login-feedback login-feedback--error">{errorMessage}</p> : null}
-          {successMessage ? <p className="login-feedback login-feedback--success">{successMessage}</p> : null}
-          {user ? (
-            <p className="login-feedback login-feedback--success">
-              Signed in as {user.username || user.email}
-            </p>
+          {errorMessage ? (
+            <p className="login-feedback login-feedback--error">{errorMessage}</p>
           ) : null}
           <p className="login-footer">
             Don&apos;t have account? <Link to="/register">Register here</Link>

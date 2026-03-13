@@ -102,3 +102,30 @@ body {
     background-position: 0% 50%;
   }
 }
+
+.app-loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: "Sora", "Segoe UI", sans-serif;
+  color: #e9f0ff;
+}
+
+.app-loading__spinner {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.18);
+  border-top-color: #6f7cff;
+  box-shadow: 0 0 22px rgba(111, 124, 255, 0.4);
+  animation: appSpin 0.9s linear infinite;
+}
+
+@keyframes appSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}

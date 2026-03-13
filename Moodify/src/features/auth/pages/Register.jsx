@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+﻿import { useEffect, useRef, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import * as THREE from "three";
 import "./Register.scss";
 import { useAuth } from "../hooks/useAuth";
@@ -127,13 +127,17 @@ function Register() {
         password: formValues.password,
       });
 
-      setSuccessMessage("Registration successful. You can login now.");
+      setSuccessMessage("Account created. You are now signed in.");
       setFormValues({ name: "", email: "", password: "" });
     } catch (error) {
       const backendMessage = error?.response?.data?.message;
       setErrorMessage(backendMessage || "Unable to register right now.");
     }
   };
+
+  if (user) {
+    return <Navigate to="/app" replace />;
+  }
 
   return (
     <section className="register-shell">
@@ -186,12 +190,11 @@ function Register() {
             {loading ? "Creating account..." : "Create Account"}
           </button>
         </form>
-        {errorMessage ? <p className="register-feedback register-feedback--error">{errorMessage}</p> : null}
-        {successMessage ? <p className="register-feedback register-feedback--success">{successMessage}</p> : null}
-        {user ? (
-          <p className="register-feedback register-feedback--success">
-            Signed in as {user.username || user.email}
-          </p>
+        {errorMessage ? (
+          <p className="register-feedback register-feedback--error">{errorMessage}</p>
+        ) : null}
+        {successMessage ? (
+          <p className="register-feedback register-feedback--success">{successMessage}</p>
         ) : null}
 
         <p className="register-footer">

@@ -6,7 +6,12 @@ export const Protected = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return null;
+    return (
+      <div className="app-loading" role="status" aria-live="polite">
+        <div className="app-loading__spinner" />
+        <p>Loading your session...</p>
+      </div>
+    );
   }
 
   if (!user) {
