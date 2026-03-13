@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
 
 $card-bg: linear-gradient(160deg, rgba(8, 11, 17, 0.58) 0%, rgba(6, 8, 13, 0.62) 100%);
 $card-border: rgba(255, 255, 255, 0.14);
@@ -18,7 +18,7 @@ $motion-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   display: grid;
   place-items: center;
   padding: clamp(1rem, 3vw, 2.5rem);
-  font-family: "Bebas Neue", "Segoe UI", sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
   color: $text-main;
   overflow: hidden;
   isolation: isolate;
@@ -79,13 +79,13 @@ $motion-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   letter-spacing: 0.14em;
   font-size: 0.72rem;
   color: rgba(188, 206, 230, 0.78);
-  font-family: "Bebas Neue", "Segoe UI", sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
 }
 
 .register-card h1 {
   margin: 0.4rem 0 0;
   font-size: clamp(1.8rem, 3vw, 2.45rem);
-  font-family: "Bebas Neue", "Segoe UI", sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
   letter-spacing: 0.02em;
 }
 
@@ -137,7 +137,7 @@ $motion-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   height: 48px;
   border: 1px solid rgba(255, 228, 206, 0.32);
   border-radius: 12px;
-  font-family: "Bebas Neue", "Segoe UI", sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
   font-weight: 600;
   font-size: 0.97rem;
   letter-spacing: 0.03em;

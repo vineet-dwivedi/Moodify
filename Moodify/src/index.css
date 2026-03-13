@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
 
 *,
 *::before,
@@ -15,7 +15,7 @@ body,
 
 body {
   min-height: 100vh;
-  font-family: "Bebas Neue", "Segoe UI", sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
   background: radial-gradient(120% 160% at 10% 10%, rgba(255, 180, 94, 0.16) 0%, transparent 55%),
     radial-gradient(120% 160% at 90% 0%, rgba(140, 166, 255, 0.18) 0%, transparent 55%),
     linear-gradient(160deg, #04060d 0%, #0b1224 48%, #04060d 100%);
@@ -110,7 +110,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  font-family: "Bebas Neue", "Segoe UI", sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
   color: #e9f0ff;
 }
 
